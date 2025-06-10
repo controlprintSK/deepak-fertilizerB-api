@@ -1,0 +1,64 @@
+[
+  { "PageId": 10, "RightsId": 1, "RightsName": "VIEW" },
+  { "PageId": 10, "RightsId": 5, "RightsName": "PRINT" },
+
+  { "PageId": 20, "RightsId": 1, "RightsName": "VIEW" },
+  { "PageId": 20, "RightsId": 2, "RightsName": "ADD" },
+  { "PageId": 20, "RightsId": 3, "RightsName": "EDIT" },
+  { "PageId": 20, "RightsId": 4, "RightsName": "DELETE" },
+
+  { "PageId": 20, "RightsId": 6, "RightsName": "REVIEW" },
+  { "PageId": 20, "RightsId": 7, "RightsName": "VERIFY" },
+
+  { "PageId": 21, "RightsId": 1, "RightsName": "VIEW" },
+  { "PageId": 21, "RightsId": 2, "RightsName": "ADD" },
+  { "PageId": 21, "RightsId": 3, "RightsName": "EDIT" },
+  { "PageId": 21, "RightsId": 4, "RightsName": "DELETE" },
+  { "PageId": 21, "RightsId": 5, "RightsName": "PRINT" },
+
+  { "PageId": 22, "RightsId": 1, "RightsName": "VIEW" },
+  { "PageId": 22, "RightsId": 2, "RightsName": "ADD" },
+  { "PageId": 22, "RightsId": 3, "RightsName": "EDIT" },
+  { "PageId": 22, "RightsId": 4, "RightsName": "DELETE" },
+
+  { "PageId": 23, "RightsId": 1, "RightsName": "VIEW" },
+  { "PageId": 23, "RightsId": 2, "RightsName": "ADD" },
+  { "PageId": 23, "RightsId": 3, "RightsName": "EDIT" },
+  { "PageId": 23, "RightsId": 4, "RightsName": "DELETE" },
+
+  { "PageId": 30, "RightsId": 1, "RightsName": "VIEW" },
+  { "PageId": 30, "RightsId": 2, "RightsName": "ADD" },
+  { "PageId": 30, "RightsId": 3, "RightsName": "EDIT" },
+  { "PageId": 30, "RightsId": 4, "RightsName": "DELETE" },
+
+  { "PageId": 31, "RightsId": 1, "RightsName": "VIEW" },
+  { "PageId": 31, "RightsId": 2, "RightsName": "ADD" },
+  { "PageId": 31, "RightsId": 3, "RightsName": "EDIT" },
+  { "PageId": 31, "RightsId": 4, "RightsName": "DELETE" },
+
+  { "PageId": 32, "RightsId": 1, "RightsName": "VIEW" },
+  { "PageId": 32, "RightsId": 2, "RightsName": "ADD" },
+  { "PageId": 32, "RightsId": 3, "RightsName": "EDIT" },
+  { "PageId": 32, "RightsId": 4, "RightsName": "DELETE" },
+
+  { "PageId": 40, "RightsId": 1, "RightsName": "VIEW" },
+  { "PageId": 40, "RightsId": 2, "RightsName": "ADD" },
+  { "PageId": 40, "RightsId": 3, "RightsName": "EDIT" },
+  { "PageId": 40, "RightsId": 4, "RightsName": "DELETE" },
+  { "PageId": 40, "RightsId": 6, "RightsName": "REVIEW" },
+
+  { "PageId": 50, "RightsId": 1, "RightsName": "VIEW" },
+  { "PageId": 50, "RightsId": 5, "RightsName": "PRINT" },
+
+  { "PageId": 51, "RightsId": 1, "RightsName": "VIEW" },
+  { "PageId": 51, "RightsId": 2, "RightsName": "ADD" },
+  { "PageId": 51, "RightsId": 3, "RightsName": "EDIT" },
+  { "PageId": 51, "RightsId": 4, "RightsName": "DELETE" },
+
+  { "PageId": 60, "RightsId": 1, "RightsName": "VIEW" },
+
+  { "PageId": 61, "RightsId": 1, "RightsName": "VIEW" },
+  { "PageId": 61, "RightsId": 2, "RightsName": "ADD" },
+  { "PageId": 61, "RightsId": 3, "RightsName": "EDIT" },
+  { "PageId": 61, "RightsId": 4, "RightsName": "DELETE" }
+]

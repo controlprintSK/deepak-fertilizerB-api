@@ -1,0 +1,309 @@
+{
+  "OWNER": [
+    {
+      "RoleId": 100,
+      "PageId": 10,
+      "RightsId": [1, 5]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 20,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 21,
+      "RightsId": [1, 2, 3, 4, 5]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 22,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 23,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 30,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 31,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 32,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 40,
+      "RightsId": [1, 2, 3, 4, 6]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 50,
+      "RightsId": [1, 5]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 51,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 51,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 60,
+      "RightsId": [1]
+    },
+    {
+      "RoleId": 100,
+      "PageId": 61,
+      "RightsId": [1, 2, 3, 4]
+    }
+  ],
+  "SUPERADMIN": [
+    {
+      "RoleId": 101,
+      "PageId": 10,
+      "RightsId": [1, 5]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 20,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 21,
+      "RightsId": [1, 2, 3, 4, 5]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 22,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 23,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 30,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 31,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 32,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 40,
+      "RightsId": [1, 2, 3, 4, 6]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 50,
+      "RightsId": [1, 5]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 51,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 51,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 60,
+      "RightsId": [1]
+    },
+    {
+      "RoleId": 101,
+      "PageId": 61,
+      "RightsId": [1, 2, 3, 4]
+    }
+  ],
+  "ADMIN": [
+    {
+      "RoleId": 1,
+      "PageId": 10,
+      "RightsId": [1, 5]
+    },
+    {
+      "RoleId": 1,
+      "PageId": 20,
+      "RightsId": [1]
+    },
+    {
+      "RoleId": 1,
+      "PageId": 21,
+      "RightsId": [1, 2, 3, 4, 5]
+    },
+    {
+      "RoleId": 1,
+      "PageId": 22,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 1,
+      "PageId": 30,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 1,
+      "PageId": 31,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 1,
+      "PageId": 32,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 1,
+      "PageId": 40,
+      "RightsId": [1, 2, 3, 4, 6]
+    },
+    {
+      "RoleId": 1,
+      "PageId": 50,
+      "RightsId": [1, 5]
+    },
+    {
+      "RoleId": 1,
+      "PageId": 51,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 1,
+      "PageId": 60,
+      "RightsId": [1]
+    },
+    {
+      "RoleId": 1,
+      "PageId": 61,
+      "RightsId": [1, 2, 3, 4]
+    }
+  ],
+  "SUPERVISOR": [
+    {
+      "RoleId": 2,
+      "PageId": 21,
+      "RightsId": [1]
+    },
+    {
+      "RoleId": 1,
+      "PageId": 22,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 2,
+      "PageId": 31,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 2,
+      "PageId": 40,
+      "RightsId": [1, 2, 3, 4, 6]
+    },
+    {
+      "RoleId": 2,
+      "PageId": 51,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 2,
+      "PageId": 60,
+      "RightsId": [1]
+    },
+    {
+      "RoleId": 2,
+      "PageId": 61,
+      "RightsId": [1, 2, 3, 4]
+    }
+  ],
+  "QA": [
+    {
+      "RoleId": 4,
+      "PageId": 21,
+      "RightsId": [1]
+    },
+    {
+      "RoleId": 4,
+      "PageId": 22,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 4,
+      "PageId": 31,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 4,
+      "PageId": 40,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 4,
+      "PageId": 51,
+      "RightsId": [1, 2, 3, 4]
+    },
+    {
+      "RoleId": 4,
+      "PageId": 60,
+      "RightsId": [1]
+    },
+    {
+      "RoleId": 4,
+      "PageId": 61,
+      "RightsId": [1, 2, 3, 4]
+    }
+  ],
+  "OPERATOR": [
+    {
+      "RoleId": 3,
+      "PageId": 21,
+      "RightsId": [1]
+    },
+    {
+      "RoleId": 31,
+      "PageId": 22,
+      "RightsId": [1]
+    },
+    {
+      "RoleId": 3,
+      "PageId": 40,
+      "RightsId": [1]
+    },
+    {
+      "RoleId": 3,
+      "PageId": 60,
+      "RightsId": [1]
+    },
+    {
+      "RoleId": 3,
+      "PageId": 61,
+      "RightsId": [1, 2, 3, 4]
+    }
+  ]
+}

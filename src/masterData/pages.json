@@ -1,0 +1,132 @@
+[
+  {
+    "ModuleId": 1,
+    "PageId": 10,
+    "PageName": "Dashboard",
+    "DisplayName": "Dashboard",
+    "Icon": "Dashboard",
+    "PageUrl": "/dashboard",
+    "SequenceNo": 1,
+    "Visible": true
+  },
+  {
+    "ModuleId": 2,
+    "PageId": 23,
+    "PageName": "Company Group",
+    "DisplayName": "Company Group",
+    "Icon": "Company Group",
+    "PageUrl": "/master/company-group",
+    "SequenceNo": 1,
+    "Visible": true
+  },
+  {
+    "ModuleId": 2,
+    "PageId": 20,
+    "PageName": "Company Master",
+    "DisplayName": "Company Master",
+    "Icon": "Company Master",
+    "PageUrl": "/master/company-master",
+    "SequenceNo": 2,
+    "Visible": true
+  },
+  {
+    "ModuleId": 2,
+    "PageId": 21,
+    "PageName": "Line Master",
+    "DisplayName": "Line Master",
+    "Icon": "Line Master",
+    "PageUrl": "/master/line-master",
+    "SequenceNo": 3,
+    "Visible": true
+  },
+  {
+    "ModuleId": 2,
+    "PageId": 22,
+    "PageName": "Product Master",
+    "DisplayName": "Product Master",
+    "Icon": "Product Master",
+    "PageUrl": "/master/product-master",
+    "SequenceNo": 4,
+    "Visible": true
+  },
+  {
+    "ModuleId": 3,
+    "PageId": 30,
+    "PageName": "User",
+    "DisplayName": "User",
+    "Icon": "User",
+    "PageUrl": "/user-management/user",
+    "SequenceNo": 1,
+    "Visible": true
+  },
+  {
+    "ModuleId": 3,
+    "PageId": 31,
+    "PageName": "User Rights",
+    "DisplayName": "User Rights",
+    "Icon": "User Rights",
+    "PageUrl": "/user-management/user-right",
+    "SequenceNo": 2,
+    "Visible": true
+  },
+  {
+    "ModuleId": 3,
+    "PageId": 32,
+    "PageName": "Transfer Rights",
+    "DisplayName": "Transfer Rights",
+    "Icon": "Transfer Rights",
+    "PageUrl": "/user-management/transfer-right",
+    "SequenceNo": 3,
+    "Visible": false
+  },
+  {
+    "ModuleId": 4,
+    "PageId": 40,
+    "PageName": "Productions",
+    "DisplayName": "Productions",
+    "Icon": "Productions",
+    "PageUrl": "/transactions/productions",
+    "SequenceNo": 1,
+    "Visible": true
+  },
+  {
+    "ModuleId": 5,
+    "PageId": 50,
+    "PageName": "Reports",
+    "DisplayName": "Reports",
+    "Icon": "Reports",
+    "PageUrl": "/report",
+    "SequenceNo": 1,
+    "Visible": true
+  },
+  {
+    "ModuleId": 5,
+    "PageId": 51,
+    "PageName": "Audit Logs",
+    "DisplayName": "Audit Logs",
+    "Icon": "Audit Logs",
+    "PageUrl": "/report/audit-logs",
+    "SequenceNo": 2,
+    "Visible": true
+  },
+  {
+    "ModuleId": 6,
+    "PageId": 60,
+    "PageName": "Video & Manual",
+    "DisplayName": "Video & Manual",
+    "Icon": "Video & Manual",
+    "PageUrl": "/support/video-manual",
+    "SequenceNo": 1,
+    "Visible": true
+  },
+  {
+    "ModuleId": 6,
+    "PageId": 61,
+    "PageName": "Create Ticket",
+    "DisplayName": "Create Ticket",
+    "Icon": "Create Ticket",
+    "PageUrl": "/support/create-ticket",
+    "SequenceNo": 2,
+    "Visible": true
+  }
+]

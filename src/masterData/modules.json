@@ -1,0 +1,51 @@
+[
+  {
+    "ModuleId": 1,
+    "ModuleName": "Dashboard",
+    "Icon": "Dashboard",
+    "SequenceNo": 1,
+    "Visible": true
+  },
+  {
+    "ModuleId": 2,
+    "ModuleName": "Master",
+    "Icon": "Master",
+    "SequenceNo": 2,
+    "Visible": true
+  },
+  {
+    "ModuleId": 3,
+    "ModuleName": "User Management",
+    "Icon": "User Management",
+    "SequenceNo": 3,
+    "Visible": true
+  },
+  {
+    "ModuleId": 4,
+    "ModuleName": "Transactions",
+    "Icon": "Transactions",
+    "SequenceNo": 4,
+    "Visible": true
+  },
+  {
+    "ModuleId": 5,
+    "ModuleName": "Reports",
+    "Icon": "Reports",
+    "SequenceNo": 5,
+    "Visible": true
+  },
+  {
+    "ModuleId": 6,
+    "ModuleName": "Help & Support",
+    "Icon": "Supports",
+    "SequenceNo": 6,
+    "Visible": true
+  },
+  {
+    "ModuleId": 99,
+    "ModuleName": "Common",
+    "Icon": "Common",
+    "SequenceNo": 99,
+    "Visible": false
+  }
+]

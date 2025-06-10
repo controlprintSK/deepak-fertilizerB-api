@@ -1,0 +1,30 @@
+[
+  {
+    "RoleId": 1,
+    "RoleName": "ADMIN"
+  },
+  {
+    "RoleId": 2,
+    "RoleName": "SUPERVISOR"
+  },
+  {
+    "RoleId": 3,
+    "RoleName": "OPERATOR"
+  },
+  {
+    "RoleId": 4,
+    "RoleName": "QA"
+  },
+  {
+    "RoleId": 100,
+    "RoleName": "OWNER"
+  },
+  {
+    "RoleId": 101,
+    "RoleName": "SUPERADMIN"
+  },
+  {
+    "RoleId": 102,
+    "RoleName": "VIEWER"
+  }
+]

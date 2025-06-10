@@ -1,0 +1,46 @@
+[
+  {
+    "RightsId": 1,
+    "RightsName": "VIEW"
+  },
+  {
+    "RightsId": 2,
+    "RightsName": "ADD"
+  },
+  {
+    "RightsId": 3,
+    "RightsName": "EDIT"
+  },
+  {
+    "RightsId": 4,
+    "RightsName": "DELETE"
+  },
+  {
+    "RightsId": 5,
+    "RightsName": "PRINT"
+  },
+  {
+    "RightsId": 6,
+    "RightsName": "CUSTOM 1"
+  },
+  {
+    "RightsId": 7,
+    "RightsName": "CUSTOM 2"
+  },
+  {
+    "RightsId": 8,
+    "RightsName": "CUSTOM 3"
+  },
+  {
+    "RightsId": 9,
+    "RightsName": "CUSTOM 4"
+  },
+  {
+    "RightsId": 10,
+    "RightsName": "CUSTOM 5"
+  },
+  {
+    "RightsId": 11,
+    "RightsName": "CUSTOM 6"
+  }
+]
