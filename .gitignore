@@ -6,10 +6,10 @@
 # Node artifact files
 node_modules/
 dist/
-# .env
-# src/app.js
-# src/config/config.js
-# src/db/dbDynamicConnection.js
+.env
+src/app.js
+src/config/config.js
+src/db/dbDynamicConnection.js
 
 # Compiled Java class files
 *.class
