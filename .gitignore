@@ -7,9 +7,9 @@
 node_modules/
 dist/
 .env
-src/app.js
-src/config/config.js
-src/db/dbDynamicConnection.js
+# src/app.js
+# src/config/config.js
+# src/db/dbDynamicConnection.js
 
 # Compiled Java class files
 *.class
