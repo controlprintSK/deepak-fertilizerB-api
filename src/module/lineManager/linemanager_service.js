@@ -156,6 +156,7 @@ const updateLineManager = async (lineManagerData, id) => {
  */
 const listLineManager = async (_schema, filter, options) => {
   const deferred = Q.defer();
+  let Finalresult = {};
   let page = options.page || 1;
   let limit = options.limit || 10;
   const offset = (page - 1) * limit;
@@ -173,18 +174,18 @@ const listLineManager = async (_schema, filter, options) => {
     order: [['createdAt', 'DESC']], // Optional: Customize sorting
   });
 
-  // result = {
-  //   results: result,
-  //   page: options.page,
-  //   limit: options.limit,
-  //   totalPages: Math.floor(result.length / options.limit),
-  //   totalResults: result.length,
-  // };
+  Finalresult = {
+    results: result.rows,
+    page: options.page,
+    limit: options.limit,
+    totalPages: Math.ceil(result.count / limit),
+    totalResults: result.count,
+  };
 
   const resObj = {
     status: httpStatus.OK,
     message: 'List Details',
-    data: result,
+    data: Finalresult,
   };
   deferred.resolve(resObj);
   return deferred.promise;
