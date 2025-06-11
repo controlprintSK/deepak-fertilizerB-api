@@ -1,4 +1,5 @@
 const httpStatus = require('http-status');
+const { Op } = require('sequelize');
 const Q = require('q');
 // const { LineManager } = require('./linemanager_model');
 const ApiError = require('../../utils/ApiError');
@@ -81,9 +82,11 @@ const getLineManagerById = async (db, id) => {
 
 const getLineManagerInsertByCode = async (LineManager, Code, CompanyCode) => {
   const result = await LineManager.findOne({
-    Code: Code,
-    CompanyCode: CompanyCode,
-    Status: 1,
+    where: {
+      Code: Code,
+      CompanyCode: CompanyCode,
+      Status: 1,
+    },
   });
 
   return result;
@@ -95,19 +98,24 @@ const getLineManagerInsertByCode = async (LineManager, Code, CompanyCode) => {
  * @returns {Promise<LineManager>}
  */
 const createLineManager = async (lineManagerData) => {
+  // console.log('lineManagerData', lineManagerData);
   const deferred = Q.defer();
-  const { LineManager } = lineManagerData.schema;
-  const isLineMasterExist = await getLineManagerInsertByCode(LineManager, lineManagerData.Code, lineManagerData.CompanyCode);
+  const { getLineModel } = lineManagerData.schema;
+  const isLineMasterExist = await getLineManagerInsertByCode(
+    getLineModel,
+    lineManagerData.Code,
+    lineManagerData.CompanyCode
+  );
 
   if (isLineMasterExist) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Line Manager Code already exist');
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Line Code already exist');
   }
 
-  const result = await LineManager.create(lineManagerData);
+  const result = await getLineModel.create(lineManagerData);
 
   const resObj = {
     status: httpStatus.OK,
-    message: 'Line Manager Created',
+    message: 'Line Created',
     data: result,
   };
   deferred.resolve(resObj);
@@ -121,21 +129,21 @@ const createLineManager = async (lineManagerData) => {
  */
 const updateLineManager = async (lineManagerData, id) => {
   const deferred = Q.defer();
-  const { LineManager } = lineManagerData.schema;
+  const { getLineModel } = lineManagerData.schema;
 
-  const result = await LineManager.findOneAndUpdate(
+  const result = await getLineModel.update(
+    { ...lineManagerData },
     {
-      $and: [{ _id: id }],
-    },
-    {
-      $set: lineManagerData,
-    },
-    { new: true }
+      where: {
+        id: id,
+      },
+      returning: true,
+    }
   );
   const resObj = {
     status: httpStatus.OK,
-    message: 'Line Manager Details Updated',
-    data: result,
+    message: 'Line Master Details Updated',
+    data: result[1],
   };
   deferred.resolve(resObj);
   return deferred.promise;
@@ -148,88 +156,53 @@ const updateLineManager = async (lineManagerData, id) => {
  */
 const listLineManager = async (_schema, filter, options) => {
   const deferred = Q.defer();
-  const { LineManager } = _schema;
-  let sortBy;
-  let limit;
-  let page;
-  let match;
-  if (filter != '') {
-    sortBy = options.sortBy; // Sorting field
-    limit = options.limit; // Number of items per page
-    page = options.page; // Current page
-    match = {
-      $match: { ...filter, Status: 1 },
-    };
-  } else {
-    match = {
-      $match: { Status: 1 },
-    };
-    sortBy = { createdAt: -1 }; // Sorting field
-    limit = 100; // Number of items per page
-    page = 1; // Current page
-  }
-
-  let result = await LineManager.aggregate([
-    match,
-    {
-      $addFields: {
-        id: {
-          $toString: '$_id',
-        },
-      },
-    },
-    {
-      $lookup: {
-        from: 'coll_product',
-        let: { getProductCodes: '$Products' },
-        pipeline: [
-          {
-            $match: {
-              $expr: {
-                $and: [
-                  {
-                    $in: ['$ProductCode', '$$getProductCodes'],
-                  },
-                ],
-              },
-            },
-          },
-          {
-            $addFields: {
-              ids: {
-                $toString: '$_id',
-              },
-            },
-          },
-        ],
-        as: 'fproducts',
-      },
-    },
-    {
-      $sort: { [sortBy]: -1 }, // Sort by 'createdAt' in descending order
-    },
-    {
-      $sort: { _id: -1 }, // Sort by 'createdAt' in descending order
-    },
-    {
-      $skip: (page - 1) * limit, // Skip documents based on the current page
-    },
-    {
-      $limit: limit, // Limit the number of documents per page
-    },
-  ]);
-
-  result = {
-    results: result,
-    page: options.page,
-    limit: options.limit,
-    totalPages: Math.floor(result.length / options.limit),
-    totalResults: result.length,
+  let page = options.page || 1;
+  let limit = options.limit || 10;
+  const offset = (page - 1) * limit;
+  const { getLineModel } = _schema;
+  const where = {
+    Status: 1,
+    ...(filter.CompanyCode && { CompanyCode: { [Op.like]: `%${filter.CompanyCode}%` } }),
+    ...(filter.Name && { Name: { [Op.like]: `%${filter.Name}%` } }),
+    ...(filter.Code && { Code: { [Op.like]: `%${filter.Code}%` } }),
   };
+  const result = await getLineModel.findAndCountAll({
+    where,
+    limit,
+    offset,
+    order: [['createdAt', 'DESC']], // Optional: Customize sorting
+  });
+
+  // result = {
+  //   results: result,
+  //   page: options.page,
+  //   limit: options.limit,
+  //   totalPages: Math.floor(result.length / options.limit),
+  //   totalResults: result.length,
+  // };
 
   const resObj = {
     status: httpStatus.OK,
-    message: 'Companies Details',
+    message: 'List Details',
+    data: result,
+  };
+  deferred.resolve(resObj);
+  return deferred.promise;
+};
+
+const listLineById = async (_schema, id) => {
+  const deferred = Q.defer();
+  const { getLineModel } = _schema;
+  const result = await getLineModel.findOne({
+    where: {
+      id: id,
+      Status: 1,
+    },
+  });
+
+  const resObj = {
+    status: httpStatus.OK,
+    message: 'Line Details',
     data: result,
   };
   deferred.resolve(resObj);
@@ -243,23 +216,23 @@ const listLineManager = async (_schema, filter, options) => {
  */
 const deleteLineManager = async (db, id) => {
   const deferred = Q.defer();
-  const { LineManager } = db.schema;
+  const { getLineModel } = db.schema;
 
-  const result = await LineManager.findOneAndUpdate(
+  const result = await getLineModel.update(
+    { Status: 0 },
     {
-      $and: [{ _id: id }],
-    },
-    {
-      $set: { Status: 0 },
-    },
-    { new: true }
+      where: {
+        id: id,
+      },
+      returning: true,
+    }
   );
-
   const resObj = {
     status: httpStatus.OK,
     message: 'Line Manager Deleted',
-    data: result,
+    data: result[1],
   };
+
   deferred.resolve(resObj);
   return deferred.promise;
 };
@@ -364,4 +337,5 @@ module.exports = {
   syncDataToLineManager,
   syncDataToLineManagerStatusUpdate,
   getAllLines,
+  listLineById,
 };

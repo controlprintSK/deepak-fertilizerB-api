@@ -17,15 +17,20 @@ const updateLineManager = catchAsync(async (req, res) => {
 });
 
 const listLineManager = catchAsync(async (req, res) => {
-  if (req.body.CompanyCode) {
-    const filter = pick(req.body, ['CompanyCode']);
-    const options = pick(req.body, ['sortBy', 'limit', 'page']);
-    const resObj = await lineManagerService.listLineManager(req.body.schema, filter, options);
-    res.status(httpStatus.OK).json(resObj);
-  } else {
-    const resObj = await lineManagerService.listLineManager(req.body.schema, '', '');
-    res.status(httpStatus.OK).json(resObj);
-  }
+  // if (req.body.CompanyCode) {
+  const filter = pick(req.body, ['CompanyCode', 'Name', 'Code']);
+  const options = pick(req.body, ['sortBy', 'limit', 'page']);
+  const resObj = await lineManagerService.listLineManager(req.body.schema, filter, options);
+  res.status(httpStatus.OK).json(resObj);
+  // } else {
+  //   const resObj = await lineManagerService.listLineManager(req.body.schema, '', '');
+  //   res.status(httpStatus.OK).json(resObj);
+  // }
+});
+
+const listLineById = catchAsync(async (req, res) => {
+  const resObj = await lineManagerService.listLineById(req.body.schema, req.params.id);
+  res.status(httpStatus.OK).json(resObj);
 });
 
 const listLineManagerByCode = catchAsync(async (req, res) => {
@@ -73,4 +78,5 @@ module.exports = {
   syncDataToLineManager,
   syncDataToLineManagerStatusUpdate,
   getAllLines,
+  listLineById,
 };

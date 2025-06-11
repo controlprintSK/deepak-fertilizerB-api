@@ -2,6 +2,7 @@ const express = require('express');
 const authRoute = require('../../module/auth/auth.route');
 const userMasterRoute = require('../../module/userMaster/master_route');
 const companyRoute = require('../../module/company/company_route');
+const lineRoute = require('../../module/lineManager/linemanager_route');
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
 
@@ -19,6 +20,10 @@ const defaultRoutes = [
   {
     path: '/company',
     route: companyRoute,
+  },
+  {
+    path: '/line',
+    route: lineRoute,
   },
 ];
 
