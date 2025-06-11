@@ -1,9 +1,11 @@
 const express = require('express');
+const multer = require('multer');
+const fs = require('fs');
 const validate = require('../../middlewares/validate');
-const lineManagerValidation = require('./linemanager_validation');
-const lineManagerController = require('./linemanager_controller');
+const lineManagerValidation = require('./customerMaster_validation');
+const lineManagerController = require('./customerMaster_controller');
 // const auth = require('../../middlewares/auth');
-const { LineMaster } = require('./linemanager_model');
+const { CustomerMaster } = require('./customerMaster_model');
 const getDBConnection = require('../../db/dbDynamicConnection');
 const ApiError = require('../../utils/ApiError');
 const httpStatus = require('http-status');
@@ -21,20 +23,46 @@ const createModel = async (req, res, next) => {
   await createDatabases(`DB_DEEPAK_${dbName}`);
   const sequelize = await getDBConnection(dbName);
   sequelize.sync({ alter: true });
-  const getLineModel = LineMaster(sequelize);
+  const CustomerModel = CustomerMaster(sequelize);
 
-  req.body.schema = { getLineModel };
+  req.body.schema = { CustomerModel };
   next();
 };
 
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    const dir = './public/customer';
+    fs.mkdirSync(dir, { recursive: true });
+    cb(null, dir);
+  },
+  filename(req, file, cb) {
+    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 10)}`;
+    const originalExt = file.originalname.split('.').pop();
+    cb(null, `${file.fieldname}-${uniqueSuffix}.${originalExt}`);
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = ['image/png', 'image/jpeg', 'application/pdf'];
+  if (allowedTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(new ApiError(httpStatus.BAD_REQUEST, 'Only PNG, JPEG, and PDF files are allowed'));
+  }
+};
+
+const upload = multer({ storage, fileFilter });
+const cpUpload = upload.fields([{ name: 'Images', maxCount: 10 }]);
+
 router.post(
-  '/addLine',
+  '/addCustomer',
   // auth(21, 2),
-  validate(lineManagerValidation.createLineMaster),
+  validate(lineManagerValidation.createCustomerMaster),
+  cpUpload,
   createModel,
   (req, res, next) => {
-    if (req.body.schema && req.body.schema.getLineModel) {
-      return auditMiddleware.auditMiddleware(req.body.schema.getLineModel, auditsFilter.createLineManagerFilter)(
+    if (req.body.schema && req.body.schema.CustomerModel) {
+      return auditMiddleware.auditMiddleware(req.body.schema.CustomerModel, auditsFilter.createLineManagerFilter)(
         req,
         res,
         next
@@ -51,8 +79,8 @@ router.put(
   validate(lineManagerValidation.updateLineMaster),
   createModel,
   // (req, res, next) => {
-  //   if (req.body.schema && req.body.schema.getLineModel) {
-  //     return auditMiddleware.auditMiddleware(req.body.schema.getLineModel, auditsFilter.updateLineManagerFilter(req))(
+  //   if (req.body.schema && req.body.schema.CustomerModel) {
+  //     return auditMiddleware.auditMiddleware(req.body.schema.CustomerModel, auditsFilter.updateLineManagerFilter(req))(
   //       req,
   //       res,
   //       next
@@ -72,8 +100,8 @@ router.route('/:id').delete(
   validate(lineManagerValidation.deleteLineMaster),
   createModel,
   // (req, res, next) => {
-  //   if (req.body.schema && req.body.schema.getLineModel) {
-  //     return auditMiddleware.auditMiddleware(req.body.schema.getLineModel, auditsFilter.deleteLineManagerFilter(req))(
+  //   if (req.body.schema && req.body.schema.CustomerModel) {
+  //     return auditMiddleware.auditMiddleware(req.body.schema.CustomerModel, auditsFilter.deleteLineManagerFilter(req))(
   //       req,
   //       res,
   //       next
