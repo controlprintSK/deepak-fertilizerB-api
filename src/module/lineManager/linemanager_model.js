@@ -1,79 +1,48 @@
-const mongoose = require('mongoose');
-const { toJSON, paginate } = require('../../utils/plugins');
+const { DataTypes } = require('sequelize');
 
-const lineManagerSchema = mongoose.Schema(
-  {
-    Code: {
-      type: String,
-      required: true,
-      trim: true,
-      set: (v) => v.toUpperCase(),
+const LineMaster = (sequelize) => {
+  return sequelize.define(
+    'LineMaster',
+    {
+      CompanyCode: {
+        type: DataTypes.STRING(50), // specify length
+        allowNull: false,
+        set(value) {
+          this.setDataValue('CompanyCode', value.toUpperCase());
+        },
+      },
+      Name: {
+        type: DataTypes.STRING(100), // specify length
+        allowNull: false,
+      },
+      Code: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+      },
+      Active: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      Status: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      SyncTime: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
     },
-    Name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    CompanyCode: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    PrinterIp: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    PrinterPort: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    ScannerIp: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    ScannerPort: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    PLCIp: {
-      type: String,
-      trim: true,
-    },
-    PLCPort: {
-      type: String,
-      trim: true,
-    },
-    Products: {
-      type: Array,
-      trim: true,
-    },
-    Active: {
-      type: Boolean,
-      default: true,
-    },
-    Status: {
-      type: Number,
-      default: 1,
-    },
-    SyncStatus: {
-      type: Number,
-      default: 0,
-    },
-    SyncTime: { type: String, default: '' },
-  },
-  {
-    timestamps: true,
-  }
-);
+    {
+      timestamps: true,
+      tableName: 'coll_line',
+      hooks: {
+        // Correct placement for hooks
+        beforeCreate: (instance) => {
+          instance.Status = 1;
+        },
+      },
+    }
+  );
+};
 
-// add plugin that converts mongoose to json
-lineManagerSchema.plugin(toJSON);
-lineManagerSchema.plugin(paginate);
-
-//const LineManager = mongoose.model('lineManager', lineManagerSchema, 'coll_lineManager');
-module.exports = { lineManagerSchema };
-//module.exports = { LineManager, lineManagerSchema };
+module.exports = { LineMaster };

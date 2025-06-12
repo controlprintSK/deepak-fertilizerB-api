@@ -2,41 +2,30 @@ const Joi = require('joi');
 
 const createLineMaster = {
   body: Joi.object().keys({
-    Code: Joi.string().required(),
-    Name: Joi.string().required(),
+    Code: Joi.string().required().max(10),
+    Name: Joi.string().required().max(100),
     CompanyCode: Joi.string().required(),
-    PrinterIp: Joi.string().required(),
-    PrinterPort: Joi.string().required(),
-    ScannerIp: Joi.string().required(),
-    ScannerPort: Joi.string().required(),
-    PLCIp: Joi.string().required(),
-    PLCPort: Joi.string().required(),
-    Products: Joi.array().required(),
-    Active: Joi.boolean().allow(true),
+    Active: Joi.number().valid(0, 1).required(),
   }),
 };
 
 const updateLineMaster = {
   body: Joi.object().keys({
-    Code: Joi.string().required(),
-    Name: Joi.string().required(),
+    Code: Joi.string().required().max(10),
+    Name: Joi.string().required().max(100),
     CompanyCode: Joi.string().required(),
-    PrinterIp: Joi.string().required(),
-    PrinterPort: Joi.string().required(),
-    ScannerIp: Joi.string().required(),
-    ScannerPort: Joi.string().required(),
-    PLCIp: Joi.string().required(),
-    PLCPort: Joi.string().required(),
-    Products: Joi.array().required(),
-    Active: Joi.boolean().allow(true),
+    Active: Joi.number().valid(0, 1).required(),
   }),
 };
 
 const listLineMaster = {
   body: Joi.object().keys({
-    sortBy: Joi.string(),
+    sortBy: Joi.string().allow(''),
     limit: Joi.number().integer(),
     page: Joi.number().integer(),
+    CompanyCode: Joi.string().allow(''),
+    Code: Joi.string().allow(''),
+    Name: Joi.string().allow(''),
   }),
 };
 

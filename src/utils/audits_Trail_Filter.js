@@ -13,19 +13,19 @@ const createPasswordPolicy = () => {
   return {
     Activity: [
       {
-        module: "PasswordPolicy",
-        action: "add",
+        module: 'PasswordPolicy',
+        action: 'add',
       },
     ],
   };
 };
 const updatePasswordPolicy = (_req) => {
   return {
-    _id: _req.params.Id,
+    id: _req.params.Id,
     Activity: [
       {
-        module: "PasswordPolicy",
-        action: "update",
+        module: 'PasswordPolicy',
+        action: 'update',
       },
     ],
   };
@@ -104,7 +104,7 @@ const createUserFilter = () => {
 };
 const updateUserFilter = (req) => {
   return {
-    _id: req.params.userId,
+    id: req.params.userId,
     Activity: [
       {
         module: 'User',
@@ -115,7 +115,7 @@ const updateUserFilter = (req) => {
 };
 const deleteUserFilter = (req) => {
   return {
-    _id: req.params.userId,
+    id: req.params.userId,
     Activity: [
       {
         module: 'User',
@@ -169,7 +169,7 @@ const createContactFilter = () => {
 };
 const updateContactByIdFilter = (req) => {
   return {
-    _id: req.params._id,
+    id: req.params._id,
     Activity: [
       {
         module: 'Company contact',
@@ -180,7 +180,7 @@ const updateContactByIdFilter = (req) => {
 };
 const deleteContactByIdFilter = (req) => {
   return {
-    _id: req.params._id,
+    id: req.params._id,
     Activity: [
       {
         module: 'Company Contact',
@@ -279,7 +279,7 @@ const createLineManagerFilter = () => {
 };
 const updateLineManagerFilter = (req) => {
   return {
-    _id: req.params.id,
+    id: req.params.id,
     Activity: [
       {
         module: 'Line Manager',
@@ -290,7 +290,7 @@ const updateLineManagerFilter = (req) => {
 };
 const deleteLineManagerFilter = (req) => {
   return {
-    _id: req.params.id,
+    id: req.params.id,
     Activity: [
       {
         module: 'Line Manager',
@@ -355,11 +355,11 @@ const addUserRightsFilter = (req) => {
 
 const updateGeneralSettings = (_req) => {
   return {
-    _id: _req.params.Id,
+    id: _req.params.Id,
     Activity: [
       {
-        module: "GeneralSettings",
-        action: "update",
+        module: 'GeneralSettings',
+        action: 'update',
       },
     ],
   };
@@ -368,13 +368,12 @@ const createGeneralSettings = () => {
   return {
     Activity: [
       {
-        module: "GeneralSettings",
-        action: "add",
+        module: 'GeneralSettings',
+        action: 'add',
       },
     ],
   };
 };
-
 
 module.exports = {
   //Auth module
@@ -420,6 +419,5 @@ module.exports = {
   updatePasswordPolicy,
   createPasswordPolicy,
   updateGeneralSettings,
-  createGeneralSettings
-  
+  createGeneralSettings,
 };

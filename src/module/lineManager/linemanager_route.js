@@ -2,13 +2,14 @@ const express = require('express');
 const validate = require('../../middlewares/validate');
 const lineManagerValidation = require('./linemanager_validation');
 const lineManagerController = require('./linemanager_controller');
-const auth = require('../../middlewares/auth');
-const { lineManagerSchema } = require('./linemanager_model');
+// const auth = require('../../middlewares/auth');
+const { LineMaster } = require('./linemanager_model');
 const getDBConnection = require('../../db/dbDynamicConnection');
 const ApiError = require('../../utils/ApiError');
 const httpStatus = require('http-status');
 const auditMiddleware = require('../../middlewares/auditsTrail');
 const auditsFilter = require('../../utils/audits_Trail_Filter');
+const createDatabases = require('../../db/createDatabase');
 
 const router = express.Router();
 
@@ -17,20 +18,23 @@ const createModel = async (req, res, next) => {
     next(new ApiError(httpStatus.BAD_REQUEST, 'Unautherized user'));
   }
   let dbName = req.headers['company'];
-  let conn = await getDBConnection(dbName);
-  const LineManager = conn.model('lineManager', lineManagerSchema, 'coll_lineManager');
-  req.body.schema = { LineManager };
+  await createDatabases(`DB_DEEPAK_${dbName}`);
+  const sequelize = await getDBConnection(dbName);
+  sequelize.sync({ alter: true });
+  const getLineModel = LineMaster(sequelize);
+
+  req.body.schema = { getLineModel };
   next();
 };
 
 router.post(
-  '/addLineManager',
-  auth(21, 2),
-  validate(lineManagerValidation.createLineMaster),
+  '/addLine',
+  // auth(21, 2),
+  validate(lineManagerValidation.listLineMaster),
   createModel,
   (req, res, next) => {
-    if (req.body.schema && req.body.schema.LineManager) {
-      return auditMiddleware.auditMiddleware(req.body.schema.LineManager, auditsFilter.createLineManagerFilter)(
+    if (req.body.schema && req.body.schema.getLineModel) {
+      return auditMiddleware.auditMiddleware(req.body.schema.getLineModel, auditsFilter.createLineManagerFilter)(
         req,
         res,
         next
@@ -42,55 +46,56 @@ router.post(
   lineManagerController.createLineManager
 );
 router.put(
-  '/updateLineManager/:id',
-  auth(21, 3),
+  '/updateLine/:id',
+  // auth(21, 3),
   validate(lineManagerValidation.updateLineMaster),
   createModel,
-  (req, res, next) => {
-    if (req.body.schema && req.body.schema.LineManager) {
-      return auditMiddleware.auditMiddleware(req.body.schema.LineManager, auditsFilter.updateLineManagerFilter)(
-        req,
-        res,
-        next
-      );
-    } else {
-      return next(new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'LineManager model not available'));
-    }
-  },
+  // (req, res, next) => {
+  //   if (req.body.schema && req.body.schema.getLineModel) {
+  //     return auditMiddleware.auditMiddleware(req.body.schema.getLineModel, auditsFilter.updateLineManagerFilter(req))(
+  //       req,
+  //       res,
+  //       next
+  //     );
+  //   } else {
+  //     return next(new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'LineManager model not available'));
+  //   }
+  // },
   lineManagerController.updateLineManager
 );
-router.post('/listLineManager', auth(21, 1), createModel, lineManagerController.listLineManager);
-router.get('/listLineManagerById/:id', auth(21, 1), createModel, lineManagerController.listLineManagerById);
+router.post('/listLine', validate(lineManagerValidation.listLineMaster), createModel, lineManagerController.listLineManager); //, auth(21, 1)
+router.get('/listLineById/:id', createModel, lineManagerController.listLineById); //, auth(21, 1)
+// router.get('/listLineManagerById/:id', createModel, lineManagerController.listLineManagerById); //, auth(21, 1)
 
 router.route('/:id').delete(
-  auth(21, 4),
+  // auth(21, 4),
   validate(lineManagerValidation.deleteLineMaster),
   createModel,
-  (req, res, next) => {
-    if (req.body.schema && req.body.schema.LineManager) {
-      return auditMiddleware.auditMiddleware(req.body.schema.LineManager, auditsFilter.deleteLineManagerFilter)(
-        req,
-        res,
-        next
-      );
-    } else {
-      return next(new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'LineManager model not available'));
-    }
-  },
+  // (req, res, next) => {
+  //   if (req.body.schema && req.body.schema.getLineModel) {
+  //     return auditMiddleware.auditMiddleware(req.body.schema.getLineModel, auditsFilter.deleteLineManagerFilter(req))(
+  //       req,
+  //       res,
+  //       next
+  //     );
+  //   } else {
+  //     return next(new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'LineManager model not available'));
+  //   }
+  // },
   lineManagerController.deleteLineManager
 );
 
-router.put('/changeActiveLineManager/:id', auth(21, 1), createModel, lineManagerController.changeActiveLineManager);
-router.post(
-  '/syncDataToLineManager',
-  validate(lineManagerValidation.syncDataToLineManager),
-  createModel,
-  lineManagerController.syncDataToLineManager
-);
+// router.put('/changeActiveLineManager/:id', auth(21, 1), createModel, lineManagerController.changeActiveLineManager);
+// router.post(
+//   '/syncDataToLineManager',
+//   validate(lineManagerValidation.syncDataToLineManager),
+//   createModel,
+//   lineManagerController.syncDataToLineManager
+// );
 
-router.post('/syncDataToLineManagerStatusUpdate', createModel, lineManagerController.syncDataToLineManagerStatusUpdate);
+// router.post('/syncDataToLineManagerStatusUpdate', createModel, lineManagerController.syncDataToLineManagerStatusUpdate);
 
-router.post('/getAllLines', createModel, lineManagerController.getAllLines);
+// router.post('/getAllLines', createModel, lineManagerController.getAllLines);
 
 module.exports = router;
 
